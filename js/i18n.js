@@ -6,6 +6,7 @@ const translations = {
     ar: {
         // App
         app_name: 'صلاتك',
+        app_description: 'تطبيق لمساعدتك على الالتزام بالصلوات وبناء عادات عبادية',
 
         // Navigation
         nav_daily_prayers: 'صلوات اليوم',
@@ -28,6 +29,7 @@ const translations = {
         rakaat_plural: 'ركعات',
         points: 'نقطة',
         points_plural: 'نقاط',
+        variable: 'متغير',
 
         // Actions
         performed: 'أديت',
@@ -43,59 +45,85 @@ const translations = {
         export_data: 'تصدير البيانات',
         import_data: 'استيراد البيانات',
         clear_all: 'مسح الكل',
+        reset_decision: 'إعادة تعيين القرار',
+
+        // Auth
+        login_title: 'تسجيل الدخول',
+        signup_title: 'إنشاء حساب جديد',
+        email: 'البريد الإلكتروني',
+        password: 'كلمة المرور',
+        confirm_password: 'تأكيد كلمة المرور',
+        full_name: 'الاسم الكامل',
+        login_btn: 'دخول',
+        signup_btn: 'إنشاء حساب',
+        no_account: 'ليس لديك حساب؟',
+        have_account: 'لديك حساب بالفعل؟',
+        auth_error: 'خطأ في البريد الإلكتروني أو كلمة المرور',
+        invalid_email: 'بريد إلكتروني غير صالح',
+        field_required: 'هذا الحقل مطلوب',
+        password_mismatch: 'كلمة المرور غير متطابقة',
+        required: 'مطلوب',
+        signup_success: 'تم إنشاء الحساب بنجاح',
 
         // Daily Prayers Page
         daily_prayers_title: 'صلوات اليوم',
         daily_prayers_subtitle: 'سجل صلواتك اليومية واكسب النقاط',
         today: 'اليوم',
+        previous_day: 'اليوم السابق',
+        next_day: 'اليوم التالي',
         prayer_not_done: 'لم تؤد بعد',
         prayer_done: 'تمت',
         prayer_missed: 'فاتت',
 
         // Qada Prayers Page
         qada_prayers_title: 'الصلاة الفائتة',
-        qada_prayers_subtitle: 'اقض صلواتك الفائتة',
+        qada_prayers_subtitle: 'اقض صلواتك الفائتة لتقليل رصيدك',
         total_rakaat: 'إجمالي الركعات',
         no_qada_prayers: 'الحمد لله! لا توجد صلوات فائتة',
-        qada_empty_message: 'استمر في المحافظة على صلواتك اليومية',
+        qada_empty_message: 'استمر في المحافظة على صلواتك اليومية في وقتها',
         add_qada_prayer: 'إضافة صلوات فائتة',
         prayer_type: 'نوع الصلاة',
         prayer_count: 'عدد الصلوات',
         optional_date: 'التاريخ (اختياري)',
         date_unknown: 'غير معروف',
-
+        add_multiple_hint: 'يمكنك إضافة عدة صلوات من نفس النوع دفعة واحدة',
+        empty_date_hint: 'اترك فارغاً إذا كنت لا تتذكر التاريخ',
+        invalid_count: 'يرجى إدخال عدد صحيح',
+        count_too_large: 'العدد كبير جداً',
+        added_prayers_success: 'تمت إضافة {count} صلاة {prayer}',
 
         // Habits Page
         habits_title: 'متتبع العادات',
-        habits_subtitle: 'ابن عادات جيدة وتخلص من السيئة',
+        habits_subtitle: 'ابن عادات إيمانية وتخلص من العادات السيئة',
         worship_habit: 'عبادة',
         sin_habit: 'معصية',
         habit_name: 'اسم العادة',
         habit_type: 'نوع العادة',
         add_new_habit: 'إضافة عادة جديدة',
-        mark_done: 'تم',
+        mark_done: 'تم الأداء',
         mark_committed: 'ارتكبت',
         mark_avoided: 'تركت',
         streak: 'سلسلة',
         days: 'يوم',
-        no_habits: 'لا توجد عادات',
-        habits_empty_message: 'ابدأ بإضافة عادة جديدة',
+        no_habits: 'لا توجد عادات مضافة',
+        habits_empty_message: 'ابدأ بإضافة عادة جديدة لتتبعها',
 
         // Statistics Page
         statistics_title: 'الإحصائيات',
-        statistics_subtitle: 'تابع تقدمك وإنجازاتك',
+        statistics_subtitle: 'تابع تقدمك الإيماني وإنجازاتك',
         prayers_performed: 'الصلوات المؤداة',
         prayers_missed: 'الصلوات الفائتة',
         total_rakaat_prayed: 'إجمالي الركعات',
-        worship_count: 'العبادات',
+        worship_count: 'إجمالي العبادات',
         days_without_sin: 'أيام بدون معاصي',
         weekly_progress: 'التقدم الأسبوعي',
         monthly_progress: 'التقدم الشهري',
         completion_rate: 'نسبة الإنجاز',
+        points_to_next_level: '{points} نقطة للمستوى التالي',
 
         // Settings Page
         settings_title: 'الإعدادات',
-        settings_subtitle: 'خصص تجربة استخدامك',
+        settings_subtitle: 'خصص تجربتك بما يناسبك',
         theme: 'المظهر',
         theme_light: 'فاتح',
         theme_dark: 'داكن',
@@ -114,10 +142,13 @@ const translations = {
         data_management: 'إدارة البيانات',
         about: 'حول التطبيق',
         version: 'الإصدار',
-        download_app: 'لتنزيل التطبيق الخاص بالآندرويد',
+        demo_tag: '(تجريبي)',
+        download_app: 'لتنزيل التطبيق الخاص بالهاتف',
+        error_invalid_input: 'البيانات المدخلة غير صحيحة',
+        error_importing: 'حدث خطأ أثناء استيراد البيانات',
 
         // Points
-        your_points: 'نقاطك',
+        your_points: 'رصيد نقاطك',
         points_history: 'سجل النقاط',
         level: 'المستوى',
         beginner: 'مبتدئ',
@@ -126,23 +157,24 @@ const translations = {
         expert: 'متقن',
 
         // Messages
-        prayer_performed_message: 'بارك الله فيك! تمت إضافة الصلاة',
-        prayer_missed_message: 'تم تسجيل الصلاة كفائتة',
-        qada_made_up_message: 'أحسنت! تم قضاء الصلاة',
-        habit_added_message: 'تمت إضافة العادة',
+        prayer_performed_message: 'بارك الله فيك! تم تسجيل الصلاة',
+        prayer_missed_message: 'تم تسجيل الصلاة كفائتة، بادر بقضائها',
+        qada_made_up_message: 'أحسنت! تم قضاء الصلاة بنجاح',
+        habit_added_message: 'تمت إضافة العادة بنجاح',
         habit_deleted_message: 'تم حذف العادة',
-        habit_marked_message: 'تم تحديث العادة',
-        data_exported_message: 'تم تصدير البيانات',
-        data_imported_message: 'تم استيراد البيانات',
-        data_cleared_message: 'تم مسح جميع البيانات',
+        habit_marked_message: 'تم تحديث سجل العادة',
+        data_exported_message: 'تم تصدير البيانات بنجاح',
+        data_imported_message: 'تم استيراد البيانات بنجاح',
+        data_cleared_message: 'تم مسح جميع البيانات بنجاح',
         confirm_delete: 'هل أنت متأكد من الحذف؟',
         confirm_clear_all: 'هل أنت متأكد من مسح جميع البيانات؟ لا يمكن التراجع عن هذا الإجراء.',
-        confirm_logout: 'هل أنت متأكد من تسجيل الخروج؟',
-        loading_message: 'يرجى الانتظار لبضع ثوان، جاري محاولة تحديد مواقيت الصلاة في منطقتك...',
+        loading_message: 'يرجى الانتظار، جاري تحديد مواقيت الصلاة في منطقتك...',
+        error_location: 'تعذر تحديد الموقع',
+        error_calculation: 'خطأ في حساب مواقيت الصلاة',
+        notifications_title: 'الإشعارات',
 
         // v1.3.0 Features
         change_decision: 'تغيير القرار',
-        reset_decision: 'إعادة تعيين',
         edit_qada: 'تعديل الصلاة الفائتة',
         remove_qada: 'إزالة من القضاء',
         last_7_days_only: 'يمكن التعديل لآخر 7 أيام فقط',
@@ -158,33 +190,27 @@ const translations = {
         wednesday: 'الأربعاء',
         thursday: 'الخميس',
         friday: 'الجمعة',
+        hijri_suffix: 'هـ',
 
-        // Auth
-        login_title: 'تسجيل الدخول',
-        signup_title: 'إنشاء حساب',
-        full_name: 'الاسم الكامل',
-        email: 'البريد الإلكتروني',
-        username: 'اسم المستخدم',
-        password: 'كلمة المرور',
-        confirm_password: 'تأكيد كلمة المرور',
-        login_btn: 'دخول',
-        signup_btn: 'إنشاء حساب',
-        no_account: 'ليس لديك حساب؟',
-        have_account: 'لديك حساب بالفعل؟',
-        logout: 'تسجيل الخروج',
-        invalid_email: 'البريد الإلكتروني غير صالح',
-        password_mismatch: 'كلمات المرور غير متطابقة',
-        auth_error: 'خطأ في اسم المستخدم أو كلمة المرور',
-        signup_success: 'تم إنشاء الحساب بنجاح',
-        field_required: 'هذا الحقل مطلوب',
+        jan: 'يناير', feb: 'فبراير', mar: 'مارس', apr: 'أبريل', may: 'مايو', jun: 'يونيو',
+        jul: 'يوليو', aug: 'أغسطس', sep: 'سبتمبر', oct: 'أكتوبر', nov: 'نوفمبر', dec: 'ديسمبر',
+
+        // Hijri Months
+        h_month_1: 'محرم', h_month_2: 'صفر', h_month_3: 'ربيع الأول', h_month_4: 'ربيع الثاني',
+        h_month_5: 'جمادى الأولى', h_month_6: 'جمادى الثانية', h_month_7: 'رجب', h_month_8: 'شعبان',
+        h_month_9: 'رمضان', h_month_10: 'شوال', h_month_11: 'ذو القعدة', h_month_12: 'ذو الحجة',
+
+        // Short days
+        day_0: 'ح', day_1: 'ن', day_2: 'ث', day_3: 'ر', day_4: 'خ', day_5: 'ج', day_6: 'س'
     },
 
     en: {
         // App
         app_name: 'Salatk',
+        app_description: 'An app to help you stay committed to prayers and build worship habits',
 
         // Navigation
-        nav_daily_prayers: "Today's Prayers",
+        nav_daily_prayers: "Daily Prayers",
         nav_qada_prayers: 'Missed Prayers',
         nav_habits: 'Habit Tracker',
         nav_statistics: 'Statistics',
@@ -204,6 +230,7 @@ const translations = {
         rakaat_plural: 'rakaat',
         points: 'point',
         points_plural: 'points',
+        variable: 'variable',
 
         // Actions
         performed: 'Performed',
@@ -219,31 +246,56 @@ const translations = {
         export_data: 'Export Data',
         import_data: 'Import Data',
         clear_all: 'Clear All',
+        reset_decision: 'Reset Decision',
+
+        // Auth
+        login_title: 'Login',
+        signup_title: 'Create Account',
+        email: 'Email',
+        password: 'Password',
+        confirm_password: 'Confirm Password',
+        full_name: 'Full Name',
+        login_btn: 'Login',
+        signup_btn: 'Sign Up',
+        no_account: 'Don\'t have an account?',
+        have_account: 'Already have an account?',
+        auth_error: 'Invalid email or password',
+        invalid_email: 'Invalid email address',
+        field_required: 'This field is required',
+        password_mismatch: 'Passwords do not match',
+        required: 'required',
+        signup_success: 'Account created successfully',
 
         // Daily Prayers Page
-        daily_prayers_title: "Today's Prayers",
+        daily_prayers_title: "Daily Prayers",
         daily_prayers_subtitle: 'Track your daily prayers and earn points',
         today: 'Today',
+        previous_day: 'Previous Day',
+        next_day: 'Next Day',
         prayer_not_done: 'Not performed yet',
         prayer_done: 'Completed',
         prayer_missed: 'Missed',
 
         // Qada Prayers Page
         qada_prayers_title: 'Missed Prayers',
-        qada_prayers_subtitle: 'Make up your missed prayers',
+        qada_prayers_subtitle: 'Make up your missed prayers to clear your list',
         total_rakaat: 'Total Rakaat',
         no_qada_prayers: 'Alhamdulillah! No missed prayers',
-        qada_empty_message: 'Keep maintaining your daily prayers',
+        qada_empty_message: 'Keep maintaining your daily prayers on time',
         add_qada_prayer: 'Add Missed Prayers',
         prayer_type: 'Prayer Type',
         prayer_count: 'Number of Prayers',
         optional_date: 'Date (Optional)',
         date_unknown: 'Unknown',
-
+        add_multiple_hint: 'You can add multiple prayers of the same type at once',
+        empty_date_hint: 'Leave empty if you don\'t remember the date',
+        invalid_count: 'Please enter a valid count',
+        count_too_large: 'Count is too large',
+        added_prayers_success: 'Added {count} {prayer} prayers',
 
         // Habits Page
         habits_title: 'Habit Tracker',
-        habits_subtitle: 'Build good habits and eliminate bad ones',
+        habits_subtitle: 'Build spiritual habits and eliminate bad ones',
         worship_habit: 'Worship',
         sin_habit: 'Sin',
         habit_name: 'Habit Name',
@@ -254,20 +306,21 @@ const translations = {
         mark_avoided: 'Avoided',
         streak: 'Streak',
         days: 'days',
-        no_habits: 'No habits',
-        habits_empty_message: 'Start by adding a new habit',
+        no_habits: 'No habits added',
+        habits_empty_message: 'Start by adding a new habit to track',
 
         // Statistics Page
         statistics_title: 'Statistics',
-        statistics_subtitle: 'Track your progress and achievements',
+        statistics_subtitle: 'Track your spiritual progress and achievements',
         prayers_performed: 'Prayers Performed',
         prayers_missed: 'Prayers Missed',
         total_rakaat_prayed: 'Total Rakaat',
-        worship_count: 'Worship Count',
+        worship_count: 'Total Worship',
         days_without_sin: 'Days Without Sin',
         weekly_progress: 'Weekly Progress',
         monthly_progress: 'Monthly Progress',
         completion_rate: 'Completion Rate',
+        points_to_next_level: '{points} points to next level',
 
         // Settings Page
         settings_title: 'Settings',
@@ -290,7 +343,10 @@ const translations = {
         data_management: 'Data Management',
         about: 'About',
         version: 'Version',
-        download_app: 'Download Android app',
+        demo_tag: '(Beta)',
+        download_app: 'To download the mobile app',
+        error_invalid_input: 'Invalid input data',
+        error_importing: 'Error occurred while importing data',
 
         // Points
         your_points: 'Your Points',
@@ -302,26 +358,27 @@ const translations = {
         expert: 'Expert',
 
         // Messages
-        prayer_performed_message: 'Barakallahu feek! Prayer added',
-        prayer_missed_message: 'Prayer recorded as missed',
-        qada_made_up_message: 'Well done! Prayer made up',
-        habit_added_message: 'Habit added',
+        prayer_performed_message: 'Barakallahu feek! Prayer recorded',
+        prayer_missed_message: 'Prayer recorded as missed, try to make it up',
+        qada_made_up_message: 'Well done! Prayer made up successfully',
+        habit_added_message: 'Habit added successfully',
         habit_deleted_message: 'Habit deleted',
-        habit_marked_message: 'Habit updated',
-        data_exported_message: 'Data exported',
-        data_imported_message: 'Data imported',
-        data_cleared_message: 'All data cleared',
+        habit_marked_message: 'Habit history updated',
+        data_exported_message: 'Data exported successfully',
+        data_imported_message: 'Data imported successfully',
+        data_cleared_message: 'All data cleared successfully',
         confirm_delete: 'Are you sure you want to delete?',
         confirm_clear_all: 'Are you sure you want to clear all data? This action cannot be undone.',
-        confirm_logout: 'Are you sure you want to logout?',
-        loading_message: 'Please wait a few seconds, locating...',
+        loading_message: 'Please wait, determining prayer times...',
+        error_location: 'Could not determine location',
+        error_calculation: 'Error calculating prayer times',
+        notifications_title: 'Notifications',
 
         // v1.3.0 Features
         change_decision: 'Change Decision',
-        reset_decision: 'Reset Decision',
         edit_qada: 'Edit Missed Prayer',
         remove_qada: 'Remove from Qada',
-        last_7_days_only: 'Modifications allowed for last 7 days only',
+        last_7_days_only: 'Modifications allowed for the last 7 days only',
         select_date: 'Select Date',
         history_navigation: 'History Navigation',
         undo_success: 'Decision undone successfully',
@@ -334,45 +391,34 @@ const translations = {
         wednesday: 'Wednesday',
         thursday: 'Thursday',
         friday: 'Friday',
+        hijri_suffix: 'AH',
 
-        // Auth
-        login_title: 'Login',
-        signup_title: 'Sign Up',
-        full_name: 'Full Name',
-        email: 'Email',
-        username: 'Username',
-        password: 'Password',
-        confirm_password: 'Confirm Password',
-        login_btn: 'Login',
-        signup_btn: 'Sign Up',
-        no_account: "Don't have an account?",
-        have_account: 'Already have an account?',
-        logout: 'Logout',
-        invalid_email: 'Invalid email address',
-        password_mismatch: 'Passwords do not match',
-        auth_error: 'Invalid username or password',
-        signup_success: 'Account created successfully',
-        field_required: 'This field is required',
+        jan: 'Jan', feb: 'Feb', mar: 'Mar', apr: 'Apr', may: 'May', jun: 'Jun',
+        jul: 'Jul', aug: 'Aug', sep: 'Sep', oct: 'Oct', nov: 'Nov', dec: 'Dec',
+
+        // Hijri Months
+        h_month_1: 'Muharram', h_month_2: 'Safar', h_month_3: 'Rabi\' al-Awwal', h_month_4: 'Rabi\' al-Thani',
+        h_month_5: 'Jumada al-Ula', h_month_6: 'Jumada al-Akhirah', h_month_7: 'Rajab', h_month_8: 'Sha\'ban',
+        h_month_9: 'Ramadan', h_month_10: 'Shawwal', h_month_11: 'Dhu al-Qi\'dah', h_month_12: 'Dhu al-Hijjah',
+
+        // Short days
+        day_0: 'Su', day_1: 'Mo', day_2: 'Tu', day_3: 'We', day_4: 'Th', day_5: 'Fr', day_6: 'Sa'
     }
 };
 
-// Get user-specific language key
-const getLangKey = () => {
-    return AuthManager.getUserKey('salatk_language');
-};
-
 // Current language
-let currentLanguage = localStorage.getItem(getLangKey()) || 'ar';
+let currentLanguage = localStorage.getItem('salatk_language') || 'ar';
 
 // Get translation
 function t(key) {
+    if (!translations[currentLanguage]) return key;
     return translations[currentLanguage][key] || key;
 }
 
 // Set language
 function setLanguage(lang) {
     currentLanguage = lang;
-    localStorage.setItem(getLangKey(), lang);
+    localStorage.setItem('salatk_language', lang);
     document.documentElement.lang = lang;
     document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
     updatePageTranslations();

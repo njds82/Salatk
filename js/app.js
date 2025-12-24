@@ -5,15 +5,10 @@
 let currentPage = 'daily-prayers';
 let selectedDate = getCurrentDate();
 
-// Get user-specific theme key
-const getThemeKey = () => {
-    return AuthManager.getUserKey('salatk_theme');
-};
-
 // Initialize app
 document.addEventListener('DOMContentLoaded', () => {
     // Load saved theme
-    const savedTheme = localStorage.getItem(getThemeKey()) || 'light';
+    const savedTheme = localStorage.getItem('salatk_theme') || 'light';
     document.documentElement.setAttribute('data-theme', savedTheme);
 
     // Update theme icon
@@ -131,35 +126,14 @@ function navigateTo(page) {
         }
     });
 
-    // Auth Guard
-    if (!AuthManager.isLoggedIn() && page !== 'login' && page !== 'signup') {
-        window.location.hash = 'login';
-        return;
-    }
-
-    // Toggle scroll and body classes
-    if (page === 'login' || page === 'signup') {
-        document.body.classList.add('auth-mode');
-    } else {
-        document.body.classList.remove('auth-mode');
-    }
-
     // Render page
     renderPage(page);
 }
 
 // Navigate based on hash
 function navigateToHash() {
-    const isLoggedIn = AuthManager.isLoggedIn();
-    const hash = window.location.hash.replace('#', '');
-
-    if (!isLoggedIn && (hash !== 'login' && hash !== 'signup')) {
-        navigateTo('login');
-    } else if (isLoggedIn && (hash === 'login' || hash === 'signup' || !hash)) {
-        navigateTo('daily-prayers');
-    } else {
-        navigateTo(hash || 'daily-prayers');
-    }
+    const hash = window.location.hash.replace('#', '') || 'daily-prayers';
+    navigateTo(hash);
 }
 
 // Render page
@@ -186,12 +160,6 @@ async function renderPage(page) {
             case 'settings':
                 html = await renderSettingsPage();
                 break;
-            case 'login':
-                html = await renderLoginPage();
-                break;
-            case 'signup':
-                html = await renderSignupPage();
-                break;
             default:
                 html = await renderDailyPrayersPage();
         }
@@ -199,7 +167,7 @@ async function renderPage(page) {
         content.innerHTML = html;
     } catch (error) {
         console.error('Error rendering page:', error);
-        content.innerHTML = '<p class="error-message">Error loading page.</p>';
+        content.innerHTML = `<p class="error-message">${t('error_calculation')}</p>`;
     }
 
     // Scroll to top only if navigating to a different page

@@ -20,24 +20,26 @@ async function renderDailyPrayersPage() {
         </div>
 
         <div class="date-navigation">
-            <div class="date-nav-item">
-                <button class="icon-btn" onclick="handlePrevDay()" title="${t('previous_day')}">
-                    <svg width="24" height="24" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" fill="none"/></svg>
-                </button>
-            </div>
-            <div class="date-info">
-                <label class="date-picker-label" for="datePicker">
-                    ${formatDisplayDate(selectedDate)} - ${hijriDate.formatted}
-                    <input type="date" id="datePicker" value="${selectedDate}" max="${today}" 
-                           onchange="handleDateChange(this.value)" style="position: absolute; opacity: 0; pointer-events: none;">
-                    <svg width="20" height="20" viewBox="0 0 24 24" style="margin-right: 8px;"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10z" fill="currentColor"/></svg>
-                </label>
-                ${!canEditDate(selectedDate) ? `<p style="color: var(--color-error); font-size: 0.75rem; margin-top: 4px;">${t('last_7_days_only')}</p>` : ''}
-            </div>
-            <div class="date-nav-item">
-                <button class="icon-btn" onclick="handleNextDay()" ${selectedDate === today ? 'disabled' : ''} title="${t('next_day')}">
-                    <svg width="24" height="24" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" fill="none"/></svg>
-                </button>
+            <div class="date-nav-controls" style="display: flex; align-items: center; gap: var(--spacing-md); width: 100%; justify-content: space-between;">
+                <div class="date-nav-item">
+                    <button class="icon-btn" onclick="handlePrevDay()" title="${t('previous_day')}">
+                        <svg width="24" height="24" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+                    </button>
+                </div>
+                <div class="date-info" style="flex: 1;">
+                    <label class="date-picker-label" for="datePicker" style="justify-content: center;">
+                        ${formatDisplayDate(selectedDate)} - ${hijriDate.formatted}
+                        <input type="date" id="datePicker" value="${selectedDate}" max="${today}" 
+                               onchange="handleDateChange(this.value)" style="position: absolute; opacity: 0; pointer-events: none;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" style="margin-right: 8px;"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10z" fill="currentColor"/></svg>
+                    </label>
+                    ${!canEditDate(selectedDate) ? `<p style="color: var(--color-error); font-size: 0.75rem; margin-top: 4px;">${t('last_7_days_only')}</p>` : ''}
+                </div>
+                <div class="date-nav-item">
+                    <button class="icon-btn" onclick="handleNextDay()" ${selectedDate === today ? 'disabled' : ''} title="${t('next_day')}">
+                        <svg width="24" height="24" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+                    </button>
+                </div>
             </div>
         </div>
         

@@ -2,10 +2,7 @@
 // Prayer Manager - Local Calculation (Adhan.js)
 // ========================================
 
-// Get user-specific cache key
-const getPrayerCacheKey = () => {
-    return AuthManager.getUserKey('salatk_prayer_location');
-};
+const PRAYER_CACHE_KEY = 'salatk_prayer_location'; // Only caching location now, times are calc'd live
 
 const PrayerManager = {
     // Initialize
@@ -26,7 +23,7 @@ const PrayerManager = {
             const FIVE_HOURS = 5 * 60 * 60 * 1000;
 
             // 1. Check if manual mode is on
-            const cached = localStorage.getItem(getPrayerCacheKey());
+            const cached = localStorage.getItem(PRAYER_CACHE_KEY);
             let cachedData = null;
             if (cached) {
                 cachedData = JSON.parse(cached);
@@ -53,7 +50,7 @@ const PrayerManager = {
                             lastUpdate: Date.now(),
                             manualMode: false
                         };
-                        localStorage.setItem(getPrayerCacheKey(), JSON.stringify(loc));
+                        localStorage.setItem(PRAYER_CACHE_KEY, JSON.stringify(loc));
                         console.log('Background location update successful:', loc);
                     },
                     (error) => {
@@ -98,7 +95,7 @@ const PrayerManager = {
                         lastUpdate: Date.now(),
                         manualMode: false
                     };
-                    localStorage.setItem(getPrayerCacheKey(), JSON.stringify(loc));
+                    localStorage.setItem(PRAYER_CACHE_KEY, JSON.stringify(loc));
                     resolve(loc);
                 },
                 (error) => {
@@ -121,13 +118,13 @@ const PrayerManager = {
             lastUpdate: Date.now(),
             manualMode: true
         };
-        localStorage.setItem(getPrayerCacheKey(), JSON.stringify(loc));
+        localStorage.setItem(PRAYER_CACHE_KEY, JSON.stringify(loc));
         return loc;
     },
 
     // Clear manual location and use auto-detect
     clearManualLocation() {
-        localStorage.removeItem(getPrayerCacheKey());
+        localStorage.removeItem(PRAYER_CACHE_KEY);
     },
 
     // Calculate prayer times using Adhan.js
@@ -160,7 +157,7 @@ const PrayerManager = {
         } catch (error) {
             console.error('Error calculating prayer times:', error);
             if (window.showToast) {
-                showToast('Error calculating prayer times.', 'error');
+                showToast(t('error_calculation'), 'error');
             }
             return null;
         }

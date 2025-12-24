@@ -89,32 +89,25 @@ async function renderSettingsPage() {
         </div>
         
         <!-- About -->
-        <div class="card" style="text-align: center; background: linear-gradient(135deg, rgba(46, 125, 132, 0.1), rgba(212, 165, 116, 0.1));">
+        <div class="card" style="text-align: center; background: linear-gradient(135deg, hsla(175, 77%, 26%, 0.1), hsla(35, 92%, 33%, 0.1));">
             <h3 style="margin-bottom: var(--spacing-sm);">${t('about')}</h3>
             <p style="color: var(--color-text-secondary); margin-bottom: var(--spacing-sm);">
                 ${t('app_name')}
             </p>
             <p style="color: var(--color-text-tertiary); font-size: 0.875rem;">
-                ${t('version')} 1.3.2 (تجريبي)
+                ${t('version')} 1.3.2 ${t('demo_tag')}
             </p>
             <p style="color: var(--color-text-tertiary); font-size: 0.875rem; margin-top: var(--spacing-md);">
-                تطبيق لمساعدتك على الالتزام وبناء عادات عبادية
+                ${t('app_description')}
             </p>
         </div>
 
         <!-- Download App -->
         <div class="card" style="text-align: center; margin-top: var(--spacing-lg); border: 2px dashed var(--color-primary-light);">
             <p style="margin-bottom: var(--spacing-sm); font-weight: 500;">${t('download_app')}</p>
-            <a href="https://salatk-app.netlify.app/" target="_blank" class="btn btn-primary" style="display: inline-block; text-decoration: none;">
-                🌐 salatk-app.netlify.app
+            <a href="https://salatk-app.pages.dev/" target="_blank" class="btn btn-primary" style="display: inline-block; text-decoration: none;">
+                🌐 salatk-app.pages.dev
             </a>
-        </div>
-
-        <!-- Logout -->
-        <div style="margin-top: var(--spacing-xl); text-align: center;">
-            <button class="btn btn-danger" onclick="handleLogout()" style="width: 100%; max-width: 300px; padding: 15px;">
-                🚪 ${t('logout')}
-            </button>
         </div>
     `;
 
@@ -124,7 +117,7 @@ async function renderSettingsPage() {
 // Handle theme change
 function handleThemeChange(theme) {
     document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem(getThemeKey(), theme);
+    localStorage.setItem('salatk_theme', theme);
 
     // Update sun/moon icons
     const sunIcon = document.querySelector('.sun-icon');
@@ -189,7 +182,7 @@ function handleImportData() {
             updatePointsDisplay();
             navigateTo('settings');
         } catch (error) {
-            showToast('Error importing data', 'error');
+            showToast(t('error_importing'), 'error');
         }
     };
     input.click();
@@ -202,12 +195,5 @@ function handleClearAllData() {
         showToast(t('data_cleared_message'), 'info');
         updatePointsDisplay();
         navigateTo('daily-prayers');
-    });
-}
-
-// Handle logout
-function handleLogout() {
-    confirmDialog(t('confirm_logout'), () => {
-        AuthManager.logout();
     });
 }

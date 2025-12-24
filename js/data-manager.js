@@ -2,13 +2,8 @@
 // Data Manager - LocalStorage Management
 // ========================================
 
-const STORAGE_KEY_PREFIX = 'salatk_data';
+const STORAGE_KEY = 'salatk_data';
 const DATA_VERSION = '1.3.0';
-
-// Get storage key for current user
-function getDataKey() {
-    return AuthManager.getUserKey(STORAGE_KEY_PREFIX);
-}
 
 // Prayer definitions
 const PRAYERS = {
@@ -79,7 +74,7 @@ function getDefaultData() {
 // Load data from localStorage
 function loadData() {
     try {
-        const stored = localStorage.getItem(getDataKey());
+        const stored = localStorage.getItem(STORAGE_KEY);
         if (!stored) {
             return getDefaultData();
         }
@@ -106,7 +101,7 @@ function loadData() {
 // Save data to localStorage
 function saveData(data) {
     try {
-        localStorage.setItem(getDataKey(), JSON.stringify(data));
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
         return true;
     } catch (error) {
         console.error('Error saving data:', error);
@@ -165,7 +160,7 @@ function markPrayerPerformed(prayerKey, date = getCurrentDate()) {
 
     // If already marked with the same status, do nothing
     if (data.prayers[date][prayerKey]?.status === 'done') {
-        return { success: false, message: 'Already marked as performed' };
+        return { success: false, message: t('prayer_done') };
     }
 
     // If marked with different status, reset first to handle points
@@ -197,7 +192,7 @@ function markPrayerMissed(prayerKey, date = getCurrentDate()) {
 
     // If already marked with the same status, do nothing
     if (data.prayers[date][prayerKey]?.status === 'missed') {
-        return { success: false, message: 'Already marked as missed' };
+        return { success: false, message: t('prayer_missed') };
     }
 
     // If marked with different status, reset first to handle points
@@ -241,7 +236,7 @@ function makeUpQadaPrayer(qadaId) {
     const index = data.qadaPrayers.findIndex(q => q.id === qadaId);
 
     if (index === -1) {
-        return { success: false, message: 'Prayer not found' };
+        return { success: false, message: t('error_invalid_input') };
     }
 
     // Remove from qada list
@@ -260,7 +255,7 @@ function addManualQadaPrayer(prayerKey, count = 1, date = null) {
     const prayer = PRAYERS[prayerKey];
 
     if (!prayer || !prayer.required) {
-        return { success: false, message: 'Invalid prayer type' };
+        return { success: false, message: t('error_invalid_input') };
     }
 
     // Add multiple prayers if count > 1
@@ -308,7 +303,7 @@ function markHabit(habitId, action, date = getCurrentDate()) {
     const habit = data.habits.find(h => h.id === habitId);
 
     if (!habit) {
-        return { success: false, message: 'Habit not found' };
+        return { success: false, message: t('error_invalid_input') };
     }
 
     if (!habit.history) {
@@ -316,7 +311,7 @@ function markHabit(habitId, action, date = getCurrentDate()) {
     }
 
     if (habit.history[date] === action) {
-        return { success: false, message: 'Already marked' };
+        return { success: false, message: t('habit_marked_message') };
     }
 
     // Reset if already marked with different action
@@ -348,7 +343,7 @@ function deleteHabit(habitId) {
     const index = data.habits.findIndex(h => h.id === habitId);
 
     if (index === -1) {
-        return { success: false, message: 'Habit not found' };
+        return { success: false, message: t('error_invalid_input') };
     }
 
     data.habits.splice(index, 1);
@@ -510,7 +505,7 @@ function resetPrayerStatus(prayerKey, date = getCurrentDate()) {
     const currentStatus = data.prayers[date]?.[prayerKey]?.status;
 
     if (!currentStatus) {
-        return { success: false, message: 'No status to reset' };
+        return { success: false, message: t('error_invalid_input') };
     }
 
     // Reverse points
@@ -538,7 +533,7 @@ function resetHabitStatus(habitId, date = getCurrentDate()) {
     const habit = data.habits.find(h => h.id === habitId);
 
     if (!habit || !habit.history || !habit.history[date]) {
-        return { success: false, message: 'No status to reset' };
+        return { success: false, message: t('error_invalid_input') };
     }
 
     const currentAction = habit.history[date];

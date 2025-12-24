@@ -15,10 +15,7 @@ function renderStatisticsPage() {
 
     const weekLabels = weekDates.map(date => {
         const d = new Date(date + 'T00:00:00');
-        const dayNames = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
-        return getCurrentLanguage() === 'ar'
-            ? ['ح', 'ن', 'ث', 'ر', 'خ', 'ج', 'س'][d.getDay()]
-            : dayNames[d.getDay()];
+        return t(`day_${d.getDay()}`);
     });
 
     // Calculate completion rate
@@ -47,13 +44,13 @@ function renderStatisticsPage() {
             </div>
             ${pointsForNext > 0 ? `
                 <p style="margin-top: var(--spacing-sm); opacity: 0.8; font-size: 0.875rem;">
-                    ${pointsForNext} ${t('points_plural')} للمستوى التالي
+                    ${t('points_to_next_level').replace('{points}', pointsForNext)}
                 </p>
             ` : ''}
         </div>
         
         <!-- Stats Grid -->
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-lg); margin-bottom: var(--spacing-xl);">
+        <div class="stats-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: var(--spacing-md); margin-bottom: var(--spacing-xl);">
             <div class="card" style="text-align: center;">
                 <div style="font-size: 2.5rem; font-weight: 700; color: var(--color-success); margin-bottom: var(--spacing-xs);">
                     ${stats.prayersPerformed}

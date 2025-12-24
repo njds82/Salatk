@@ -104,15 +104,15 @@ function showAddQadaModal() {
             <input type="number" class="form-input" id="qadaPrayerCountInput" 
                    value="1" min="1" max="10000" placeholder="${t('prayer_count')}">
             <p style="color: var(--color-text-secondary); font-size: 0.875rem; margin-top: var(--spacing-xs);">
-                ${getCurrentLanguage() === 'ar' ? 'يمكنك إضافة عدة صلوات من نفس النوع دفعة واحدة' : 'You can add multiple prayers of the same type at once'}
+                ${t('add_multiple_hint')}
             </p>
         </div>
         <div class="form-group">
             <label class="form-label">${t('optional_date')}</label>
             <input type="date" class="form-input" id="qadaPrayerDateInput" 
-                   max="${getCurrentDate()}" placeholder="${getCurrentLanguage() === 'ar' ? 'اختياري' : 'Optional'}">
+                   max="${getCurrentDate()}" placeholder="${t('optional_date')}">
             <p style="color: var(--color-text-secondary); font-size: 0.875rem; margin-top: var(--spacing-xs);">
-                ${getCurrentLanguage() === 'ar' ? 'اترك فارغاً إذا كنت لا تتذكر التاريخ' : 'Leave empty if you don\'t remember the date'}
+                ${t('empty_date_hint')}
             </p>
         </div>
     `;
@@ -142,12 +142,12 @@ function handleAddManualQada() {
     const dateInput = document.getElementById('qadaPrayerDateInput').value;
 
     if (count < 1 || isNaN(count)) {
-        showToast(getCurrentLanguage() === 'ar' ? 'يرجى إدخال عدد صحيح' : 'Please enter a valid count', 'error');
+        showToast(t('invalid_count'), 'error');
         return;
     }
 
     if (count > 10000) {
-        showToast(getCurrentLanguage() === 'ar' ? 'العدد كبير جداً' : 'Count too large', 'error');
+        showToast(t('count_too_large'), 'error');
         return;
     }
 
@@ -155,9 +155,9 @@ function handleAddManualQada() {
     const result = addManualQadaPrayer(prayerType, count, date);
 
     if (result.success) {
-        const message = getCurrentLanguage() === 'ar'
-            ? `تمت إضافة ${count} صلاة ${t(PRAYERS[prayerType].nameKey)}`
-            : `Added ${count} ${t(PRAYERS[prayerType].nameKey)} prayer${count > 1 ? 's' : ''}`;
+        const message = t('added_prayers_success')
+            .replace('{count}', count)
+            .replace('{prayer}', t(PRAYERS[prayerType].nameKey));
         showToast(message, 'success');
         closeModal();
         navigateTo('qada-prayers');

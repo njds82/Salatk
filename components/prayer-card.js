@@ -7,7 +7,7 @@ function createPrayerCard(prayerKey, status = null, prayerTime = null) {
     const prayerName = t(prayer.nameKey);
     const rakaatText = prayer.rakaat > 0
         ? `${prayer.rakaat} ${prayer.rakaat === 1 ? t('rakaat') : t('rakaat_plural')}`
-        : t('rakaat') + ' ' + t('variable');
+        : `${t('rakaat')} ${t('variable')}`;
     const pointsText = `${prayer.points > 0 ? '+' : ''}${prayer.points} ${prayer.points === 1 ? t('points') : t('points_plural')}`;
 
     const statusClass = status ? status : '';

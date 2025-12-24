@@ -30,8 +30,9 @@ function formatDisplayDate(dateStr) {
     if (getCurrentLanguage() === 'ar') {
         return `${dayName} ${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
     } else {
-        const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-        return `${dayName}, ${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+        const months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+        const monthName = t(months[date.getMonth()]);
+        return `${dayName}, ${monthName} ${date.getDate()}, ${date.getFullYear()}`;
     }
 }
 
@@ -44,24 +45,21 @@ function isToday(dateStr) {
 // For accurate Hijri dates, you would need a proper library
 function getHijriDate(date = new Date()) {
     // This is a simplified approximation
-    // For production, use a library like moment-hijri
     const gregorianYear = date.getFullYear();
     const hijriYear = Math.floor((gregorianYear - 622) * 1.030684);
-
-    const monthNames = [
-        'محرم', 'صفر', 'ربيع الأول', 'ربيع الثاني', 'جمادى الأولى', 'جمادى الثانية',
-        'رجب', 'شعبان', 'رمضان', 'شوال', 'ذو القعدة', 'ذو الحجة'
-    ];
 
     // Simplified calculation - not accurate for production
     const approximateMonth = date.getMonth();
     const approximateDay = date.getDate();
 
+    const monthKey = `h_month_${(approximateMonth % 12) + 1}`;
+    const monthName = t(monthKey);
+
     return {
         year: hijriYear,
         month: approximateMonth % 12,
         day: approximateDay,
-        formatted: `${approximateDay} ${monthNames[approximateMonth % 12]} ${hijriYear}هـ`
+        formatted: `${approximateDay} ${monthName} ${hijriYear}${t('hijri_suffix')}`
     };
 }
 
