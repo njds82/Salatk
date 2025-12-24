@@ -38,26 +38,6 @@ const AuthManager = {
         return { success: true, user: newUser };
     },
 
-    // Login
-    login(email, password) {
-        const users = this.getUsers();
-        const user = users.find(u => u.email === email && u.password === password);
-
-        if (user) {
-            this.createSession(user);
-            return { success: true, user };
-        }
-
-        return { success: false, message: 'Invalid email or password' };
-    },
-
-    // Logout
-    logout() {
-        localStorage.removeItem(SESSION_STORAGE_KEY);
-        window.location.hash = 'login';
-        window.location.reload(); // Hard refresh to clear app state if needed
-    },
-
     // Session Management
     createSession(user) {
         const sessionData = {

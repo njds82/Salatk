@@ -47,24 +47,6 @@ const translations = {
         clear_all: 'مسح الكل',
         reset_decision: 'إعادة تعيين القرار',
 
-        // Auth
-        login_title: 'تسجيل الدخول',
-        signup_title: 'إنشاء حساب جديد',
-        email: 'البريد الإلكتروني',
-        password: 'كلمة المرور',
-        confirm_password: 'تأكيد كلمة المرور',
-        full_name: 'الاسم الكامل',
-        login_btn: 'دخول',
-        signup_btn: 'إنشاء حساب',
-        no_account: 'ليس لديك حساب؟',
-        have_account: 'لديك حساب بالفعل؟',
-        auth_error: 'خطأ في البريد الإلكتروني أو كلمة المرور',
-        invalid_email: 'بريد إلكتروني غير صالح',
-        field_required: 'هذا الحقل مطلوب',
-        password_mismatch: 'كلمة المرور غير متطابقة',
-        required: 'مطلوب',
-        signup_success: 'تم إنشاء الحساب بنجاح',
-
         // Daily Prayers Page
         daily_prayers_title: 'صلوات اليوم',
         daily_prayers_subtitle: 'سجل صلواتك اليومية واكسب النقاط',
@@ -247,24 +229,6 @@ const translations = {
         import_data: 'Import Data',
         clear_all: 'Clear All',
         reset_decision: 'Reset Decision',
-
-        // Auth
-        login_title: 'Login',
-        signup_title: 'Create Account',
-        email: 'Email',
-        password: 'Password',
-        confirm_password: 'Confirm Password',
-        full_name: 'Full Name',
-        login_btn: 'Login',
-        signup_btn: 'Sign Up',
-        no_account: 'Don\'t have an account?',
-        have_account: 'Already have an account?',
-        auth_error: 'Invalid email or password',
-        invalid_email: 'Invalid email address',
-        field_required: 'This field is required',
-        password_mismatch: 'Passwords do not match',
-        required: 'required',
-        signup_success: 'Account created successfully',
 
         // Daily Prayers Page
         daily_prayers_title: "Daily Prayers",
