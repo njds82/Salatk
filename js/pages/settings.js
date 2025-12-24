@@ -98,7 +98,7 @@ async function renderSettingsPage() {
                 ${t('version')} 1.3.2 (تجريبي)
             </p>
             <p style="color: var(--color-text-tertiary); font-size: 0.875rem; margin-top: var(--spacing-md);">
-                تطبيق لمساعدتك على الالتزام بالصلوات وبناء عادات عبادية
+                تطبيق لمساعدتك على الالتزام وبناء عادات عبادية
             </p>
         </div>
 
