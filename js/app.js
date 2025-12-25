@@ -25,14 +25,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize data
     loadData();
 
+    // Check for authentication
+    checkAuthAndInit();
+
+    // Initialize notification badge
+    if (window.updateNotifBadge) updateNotifBadge();
+});
+
+async function checkAuthAndInit() {
+    const session = window.supabaseClient.auth.session;
+
     // Initialize prayer manager
     if (window.PrayerManager) {
-        PrayerManager.init().then(() => {
-            // refresh if needed or just let the page load handle it
-            if (currentPage === 'daily-prayers') {
-                renderPage('daily-prayers');
-            }
-        });
+        await PrayerManager.init();
     }
 
     // Update points display
@@ -40,10 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Navigate to initial page
     navigateToHash();
-
-    // Initialize notification badge
-    if (window.updateNotifBadge) updateNotifBadge();
-});
+}
 
 // Set up event listeners
 function setupEventListeners() {
@@ -144,7 +146,20 @@ async function renderPage(page) {
     let html = '';
 
     try {
+        // Auth check
+        const { data: { session } } = await window.supabaseClient.auth.getSession();
+        if (!session && page !== 'login' && page !== 'signup') {
+            navigateTo('login');
+            return;
+        }
+
         switch (page) {
+            case 'login':
+                html = renderAuthPage('login');
+                break;
+            case 'signup':
+                html = renderAuthPage('signup');
+                break;
             case 'daily-prayers':
                 html = await renderDailyPrayersPage();
                 break;
@@ -157,6 +172,9 @@ async function renderPage(page) {
             case 'statistics':
                 html = renderStatisticsPage();
                 break;
+            case 'leaderboard':
+                html = await renderLeaderboardPage();
+                break;
             case 'settings':
                 html = await renderSettingsPage();
                 break;
@@ -165,6 +183,11 @@ async function renderPage(page) {
         }
 
         content.innerHTML = html;
+
+        // Setup form listeners if on auth page
+        if (page === 'login' || page === 'signup') {
+            setupAuthFormListeners(page);
+        }
     } catch (error) {
         console.error('Error rendering page:', error);
         content.innerHTML = `<p class="error-message">${t('error_calculation')}</p>`;

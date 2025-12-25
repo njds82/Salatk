@@ -1,78 +1,59 @@
 // ========================================
-// Auth Manager - Session & User Persistence
+// Authentication Manager
 // ========================================
 
-const AUTH_STORAGE_KEY = 'salatk_users';
-const SESSION_STORAGE_KEY = 'salatk_session';
-
 const AuthManager = {
-    // Initialize
-    init() {
-        if (!localStorage.getItem(AUTH_STORAGE_KEY)) {
-            localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify([]));
-        }
-    },
-
-    // Register a new user
-    register(fullName, email, password) {
-        const users = this.getUsers();
-
-        // Check if user already exists
-        if (users.find(u => u.email === email)) {
-            return { success: false, message: 'User already exists' };
-        }
-
-        const newUser = {
-            id: 'user_' + Date.now(),
-            fullName,
+    async signUp(email, password, fullName) {
+        const { data, error } = await window.supabaseClient.auth.signUp({
             email,
-            password, // In a real app, this should be hashed
-            createdAt: new Date().toISOString()
-        };
-
-        users.push(newUser);
-        localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(users));
-
-        // Create session
-        this.createSession(newUser);
-        return { success: true, user: newUser };
+            password,
+            options: {
+                data: {
+                    full_name: fullName
+                }
+            }
+        });
+        return { data, error };
     },
 
-    // Session Management
-    createSession(user) {
-        const sessionData = {
-            userId: user.id,
-            email: user.email,
-            fullName: user.fullName,
-            loginTime: Date.now()
-        };
-        localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(sessionData));
+    async signIn(email, password) {
+        const { data, error } = await window.supabaseClient.auth.signInWithPassword({
+            email,
+            password
+        });
+        return { data, error };
     },
 
-    isLoggedIn() {
-        return !!localStorage.getItem(SESSION_STORAGE_KEY);
-    },
-
-    getCurrentUser() {
-        const session = localStorage.getItem(SESSION_STORAGE_KEY);
-        return session ? JSON.parse(session) : null;
-    },
-
-    getUsers() {
-        const users = localStorage.getItem(AUTH_STORAGE_KEY);
-        return users ? JSON.parse(users) : [];
-    },
-
-    // Helper to get user-specific storage key
-    getUserKey(baseKey) {
-        const user = this.getCurrentUser();
-        if (user && user.userId) {
-            return `${baseKey}_${user.userId}`;
+    async signOut() {
+        const { error } = await window.supabaseClient.auth.signOut();
+        if (!error) {
+            localStorage.removeItem('salatk_session');
+            window.location.reload();
         }
-        return baseKey; // Fallback for guest/shared
+        return { error };
+    },
+
+    async getCurrentUser() {
+        const { data: { user } } = await window.supabaseClient.auth.getUser();
+        return user;
+    },
+
+    async getProfile() {
+        const user = await this.getCurrentUser();
+        if (!user) return null;
+
+        const { data, error } = await window.supabaseClient
+            .from('profiles')
+            .select('*')
+            .eq('id', user.id)
+            .single();
+
+        return data;
+    },
+
+    isAuthenticated() {
+        return !!window.supabaseClient.auth.getSession();
     }
 };
 
-// Initialize on load
-AuthManager.init();
 window.AuthManager = AuthManager;

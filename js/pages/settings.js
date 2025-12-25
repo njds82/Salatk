@@ -11,10 +11,25 @@ async function renderSettingsPage() {
     const loc = await PrayerManager.getUserLocation();
     PrayerManager.lastLoc = loc; // Store temporarily for render
 
+    const user = await AuthManager.getCurrentUser();
+    const profile = await AuthManager.getProfile();
+
     let html = `
         <div class="page-header">
             <h1 class="page-title">${t('settings_title')}</h1>
             <p class="page-subtitle">${t('settings_subtitle')}</p>
+        </div>
+
+        <!-- Account Settings -->
+        <div class="card" style="margin-bottom: var(--spacing-lg); border: 1px solid var(--color-primary);">
+            <h3 style="margin-bottom: var(--spacing-md); color: var(--color-primary);">${t('account_settings')}</h3>
+            <div style="display: flex; flex-direction: column; gap: var(--spacing-sm);">
+                <p><strong>${t('logged_in_as')}:</strong> ${profile?.full_name || user?.email}</p>
+                <p style="font-size: 0.875rem; color: var(--color-text-tertiary);">${user?.email || ''}</p>
+                <button class="btn btn-danger" onclick="AuthManager.signOut()" style="margin-top: var(--spacing-sm);">
+                    🚪 ${t('logout_button')}
+                </button>
+            </div>
         </div>
         
         <!-- Theme Settings -->
@@ -95,7 +110,7 @@ async function renderSettingsPage() {
                 ${t('app_name')}
             </p>
             <p style="color: var(--color-text-tertiary); font-size: 0.875rem;">
-                ${t('version')} 1.3.2 ${t('demo_tag')}
+                ${t('version')} 2.0.0 ${t('demo_tag')}
             </p>
             <p style="color: var(--color-text-tertiary); font-size: 0.875rem; margin-top: var(--spacing-md);">
                 ${t('app_description')}

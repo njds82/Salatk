@@ -20,6 +20,9 @@
 
     <!-- Adhan.js for Prayer Times -->
     <script src="https://cdn.jsdelivr.net/npm/adhan@4.4.3/lib/bundles/adhan.umd.min.js"></script>
+
+    <!-- Supabase JS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
@@ -111,6 +114,14 @@
                 <span data-i18n="nav_statistics">الإحصائيات</span>
             </a>
 
+            <a href="#leaderboard" class="nav-item" data-page="leaderboard">
+                <svg width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M12 2 L15 8 L22 9 L17 14 L18.5 21 L12 17.5 L5.5 21 L7 14 L2 9 L9 8 Z" stroke="currentColor"
+                        stroke-width="2" fill="none" />
+                </svg>
+                <span data-i18n="nav_leaderboard">لوحة الصدارة</span>
+            </a>
+
             <a href="#settings" class="nav-item" data-page="settings">
                 <svg width="24" height="24" viewBox="0 0 24 24">
                     <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" fill="none" />
@@ -165,6 +176,10 @@
     <script src="js/pages/statistics.js"></script>
     <script src="js/pages/settings.js"></script>
     <script src="js/prayer-manager.js"></script>
+    <script src="js/supabaseClient.js"></script>
+    <script src="js/auth-manager.js"></script>
+    <script src="js/pages/auth.js"></script>
+    <script src="js/pages/leaderboard.js"></script>
     <script src="js/app.js"></script>
 </body>
 

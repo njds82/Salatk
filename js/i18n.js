@@ -183,7 +183,43 @@ const translations = {
         h_month_9: 'رمضان', h_month_10: 'شوال', h_month_11: 'ذو القعدة', h_month_12: 'ذو الحجة',
 
         // Short days
-        day_0: 'ح', day_1: 'ن', day_2: 'ث', day_3: 'ر', day_4: 'خ', day_5: 'ج', day_6: 'س'
+        day_0: 'ح', day_1: 'ن', day_2: 'ث', day_3: 'ر', day_4: 'خ', day_5: 'ج', day_6: 'س',
+
+        // Auth
+        login_title: 'تسجيل الدخول',
+        signup_title: 'إنشاء حساب',
+        login_subtitle: 'أهلاً بك مجدداً في صلاتك',
+        signup_subtitle: 'ابدأ رحلتك الإيمانية معنا اليوم',
+        email_label: 'البريد الإلكتروني',
+        password_label: 'كلمة المرور',
+        full_name_label: 'الاسم الكامل',
+        email_placeholder: 'example@mail.com',
+        password_placeholder: '••••••••',
+        full_name_placeholder: 'أدخل اسمك الكامل',
+        login_button: 'دخول',
+        signup_button: 'تسجيل',
+        loading_auth: 'جاري التحقق',
+        no_account_text: 'ليس لديك حساب؟',
+        have_account_text: 'لديك حساب بالفعل؟',
+        signup_link: 'سجل الآن',
+        login_link: 'سجل دخولك',
+        login_success: 'تم تسجيل الدخول بنجاح',
+        signup_success: 'تم إنشاء الحساب بنجاح',
+
+        // Leaderboard
+        nav_leaderboard: 'لوحة الصدارة',
+        leaderboard_title: 'لوحة الصدارة',
+        leaderboard_subtitle: 'تنافس مع الآخرين في فعل الخيرات',
+        rank_header: 'الترتيب',
+        user_header: 'المستخدم',
+        points_header: 'النقاط',
+        no_leaderboard_data: 'لا يوجد متسابقون بعد، كن الأول!',
+        error_fetching_leaderboard: 'حدث خطأ أثناء جلب ترتيب المتسابقين',
+
+        // Account
+        account_settings: 'إدارة الحساب',
+        logout_button: 'تسجيل الخروج',
+        logged_in_as: 'مسجل الدخول باسم'
     },
 
     en: {
@@ -366,7 +402,43 @@ const translations = {
         h_month_9: 'Ramadan', h_month_10: 'Shawwal', h_month_11: 'Dhu al-Qi\'dah', h_month_12: 'Dhu al-Hijjah',
 
         // Short days
-        day_0: 'Su', day_1: 'Mo', day_2: 'Tu', day_3: 'We', day_4: 'Th', day_5: 'Fr', day_6: 'Sa'
+        day_0: 'Su', day_1: 'Mo', day_2: 'Tu', day_3: 'We', day_4: 'Th', day_5: 'Fr', day_6: 'Sa',
+
+        // Auth
+        login_title: 'Login',
+        signup_title: 'Sign Up',
+        login_subtitle: 'Welcome back to Salatk',
+        signup_subtitle: 'Start your spiritual journey today',
+        email_label: 'Email',
+        password_label: 'Password',
+        full_name_label: 'Full Name',
+        email_placeholder: 'example@mail.com',
+        password_placeholder: '••••••••',
+        full_name_placeholder: 'Enter your full name',
+        login_button: 'Login',
+        signup_button: 'Sign Up',
+        loading_auth: 'Verifying',
+        no_account_text: 'Don\'t have an account?',
+        have_account_text: 'Already have an account?',
+        signup_link: 'Sign up now',
+        login_link: 'Login now',
+        login_success: 'Login successful',
+        signup_success: 'Account created successfully',
+
+        // Leaderboard
+        nav_leaderboard: 'Leaderboard',
+        leaderboard_title: 'Leaderboard',
+        leaderboard_subtitle: 'Compete with others in doing good',
+        rank_header: 'Rank',
+        user_header: 'User',
+        points_header: 'Points',
+        no_leaderboard_data: 'No competitors yet, be the first!',
+        error_fetching_leaderboard: 'Error fetching leaderboard',
+
+        // Account
+        account_settings: 'Account Management',
+        logout_button: 'Logout',
+        logged_in_as: 'Logged in as'
     }
 };
 
