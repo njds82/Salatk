@@ -205,6 +205,7 @@ const translations = {
         login_link: 'سجل دخولك',
         login_success: 'تم تسجيل الدخول بنجاح',
         signup_success: 'تم إنشاء الحساب بنجاح',
+        check_email_confirmation: 'يرجى تفقد بريدك الإلكتروني لتأكيد حسابك',
 
         // Leaderboard
         nav_leaderboard: 'لوحة الصدارة',
@@ -424,6 +425,7 @@ const translations = {
         login_link: 'Login now',
         login_success: 'Login successful',
         signup_success: 'Account created successfully',
+        check_email_confirmation: 'Please check your email to confirm your account',
 
         // Leaderboard
         nav_leaderboard: 'Leaderboard',

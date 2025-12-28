@@ -86,10 +86,15 @@ function setupAuthFormListeners(type) {
             if (result.error) {
                 showToast(result.error.message, 'error');
             } else {
-                showToast(t(type === 'login' ? 'login_success' : 'signup_success'), 'success');
-                // Redirect to home
-                window.location.hash = 'daily-prayers';
-                window.location.reload();
+                if (type === 'signup' && result.data && !result.data.session) {
+                    showToast(t('check_email_confirmation'), 'success');
+                    toggleAuthType('login');
+                } else {
+                    showToast(t(type === 'login' ? 'login_success' : 'signup_success'), 'success');
+                    // Redirect to home
+                    window.location.hash = 'daily-prayers';
+                    window.location.reload();
+                }
             }
         } catch (err) {
             showToast(err.message, 'error');

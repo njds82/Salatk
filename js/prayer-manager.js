@@ -6,6 +6,8 @@ const PRAYER_CACHE_KEY = 'salatk_prayer_location'; // Only caching location now,
 
 const PrayerManager = {
     // Initialize
+    locationRequestPromise: null,
+
     async init() {
         console.log('Initializing Prayer Manager (Adhan.js)...');
 
@@ -18,7 +20,11 @@ const PrayerManager = {
 
     // Get user location
     getUserLocation() {
-        return new Promise((resolve) => {
+        if (this.locationRequestPromise) {
+            return this.locationRequestPromise;
+        }
+
+        this.locationRequestPromise = new Promise((resolve) => {
             const now = Date.now();
             const FIVE_HOURS = 5 * 60 * 60 * 1000;
 
@@ -77,7 +83,9 @@ const PrayerManager = {
             // 3. No cache (First run): blocking GPS request
             if (!navigator.geolocation) {
                 console.warn('Geolocation not supported, using default');
-                resolve({ lat: 21.3891, long: 39.8579, manualMode: false });
+                const defaultLoc = { lat: 21.3891, long: 39.8579, manualMode: false };
+                localStorage.setItem(PRAYER_CACHE_KEY, JSON.stringify(defaultLoc));
+                resolve(defaultLoc);
                 return;
             }
 
@@ -103,11 +111,17 @@ const PrayerManager = {
                     if (window.showToast) {
                         showToast(`${t('error_location')}. Using default (Mecca).`, 'warning');
                     }
-                    resolve({ lat: 21.3891, long: 39.8579, manualMode: false });
+                    const defaultLoc = { lat: 21.3891, long: 39.8579, manualMode: false };
+                    localStorage.setItem(PRAYER_CACHE_KEY, JSON.stringify(defaultLoc));
+                    resolve(defaultLoc);
                 },
                 options
             );
+        }).finally(() => {
+            this.locationRequestPromise = null;
         });
+
+        return this.locationRequestPromise;
     },
 
     // Save manual location

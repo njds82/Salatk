@@ -33,7 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function checkAuthAndInit() {
-    const session = window.supabaseClient.auth.session;
 
     // Initialize prayer manager
     if (window.PrayerManager) {
