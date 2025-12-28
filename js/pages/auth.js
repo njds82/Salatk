@@ -86,7 +86,8 @@ function setupAuthFormListeners(type) {
             if (result.error) {
                 showToast(result.error.message, 'error');
             } else {
-                if (type === 'signup' && result.data && !result.data.session) {
+                // Check if signup required email confirmation
+                if (type === 'signup' && result.data && !result.data.session && result.data.user) {
                     showToast(t('check_email_confirmation'), 'success');
                     toggleAuthType('login');
                 } else {
